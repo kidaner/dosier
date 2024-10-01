@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News, in context.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Tiny5', sans-serif;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+        }
+
+        .rotating-text {
+            font-size: 3rem;
+            font-weight: bold;
+            position: relative;
+            height: 4rem;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .rotating-text span {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            animation: fade 6s ease-in-out infinite;
+        }
+
+        .rotating-text span:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .fixed-cycle {
+            font-size: 3rem;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes fade {
+
+            0%,
+            45% {
+                opacity: 1;
+            }
+
+            50%,
+            95% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .email-input {
+            font-family: 'Barlow', sans-serif;
+            font-size: 1rem;
+            margin-top: 1rem;
+            width: 300px;
+        }
+
+        .subscribe-button {
+            font-family: 'Barlow', sans-serif;
+            font-size: 1rem;
+        }
+
+        .bi-globe {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <i class="bi bi-globe"></i>
+    <div class="rotating-text">
+        <span>NEWS</span>
+        <span>BUSINESS</span>
+    </div>
+    <div class="fixed-cycle">CYCLE</div>
+
+    <div class="mt-6">
+        <form id="emailForm" action="/submit_email" method="POST">
+            <input type="email" name="email" placeholder="Email" class="input input-bordered email-input"
+                autocomplete="off" required />
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.submit();
+            }
+        });
+    </script>
+</body>
+
+</html>
