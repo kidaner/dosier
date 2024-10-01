@@ -12,8 +12,7 @@ import os
 app = Flask(__name__)
 
 exa = Exa(os.getenv('EXA_API_KEY'))
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-client = OpenAI()
+client = OpenAI(os.getenv('OPENAI_API_KEY'))
 
 
 def serialize(vector: List[float]) -> bytes:
